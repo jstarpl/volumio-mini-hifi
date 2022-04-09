@@ -1,0 +1,15 @@
+#!/bin/bash
+{
+   if ([ "$ID_FS_TYPE" = "iso9660" ] || [ "$ID_FS_TYPE" = "udf" ]) && [ $ID_CDROM_MEDIA -eq 1 ]; then
+    mkdir -p /mnt/CDROM
+    chmod o+rx /mnt/CDROM
+    echo "Mounting CDROM..."
+    /usr/bin/systemd-mount --no-block --automount=yes --collect --bind-device --owner=volumio /dev/sr0 /mnt/CDROM
+    ln -s /mnt/CDROM /var/lib/mpd/music/CDROM
+  elif [ -d "/mnt/CDROM" ]; then
+    rm /var/lib/mpd/music/CDROM
+    umount -l /mnt/CDROM
+    rm -rf /mnt/CDROM
+  fi
+} &>> "/var/log/autodvd.log" &
+

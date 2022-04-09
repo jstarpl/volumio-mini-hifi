@@ -12,3 +12,5 @@ GPIO17 needs the Pull-up Resistor to be on, as configured in userconfig.txt
 Special sauce
 ---
 GPIO-Buttons has a special feature where a long-press of the play/pause button will eject the CD from the drive.
+
+The `/usr/local/bin/autodvd` script along with the *udev* configuration automatically mounts any inserted data disk on `/mnt/CDROM`.

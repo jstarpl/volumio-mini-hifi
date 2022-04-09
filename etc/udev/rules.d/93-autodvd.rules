@@ -1,0 +1,2 @@
+# Auto-mount data CD/DVD disks
+SUBSYSTEM=="block", ENV{ID_CDROM}=="?*", ENV{ID_PATH}=="platform-3f980000.usb-usb-0:1.2.2:1.0-scsi-0:0:0:0", ACTION=="change", RUN+="/usr/local/bin/autodvd"
